@@ -12,3 +12,8 @@ Clone the repository:
 ```bash
 git clone https://github.com/Happiness-sudo/week1-code-challenge
 cd week1-code-challenge
+Author
+Happiness-sudo
+
+License
+MIT
