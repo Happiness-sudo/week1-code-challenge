@@ -1,7 +1,9 @@
+// Function to calculate NSSF (6% capped at 1080)
 function calculateNSSF(basicSalary) {
     return Math.min(basicSalary * 0.06, 1080);
 }
 
+// Function to calculate NHIF based on salary ranges
 function calculateNHIF(grossSalary) {
     if (grossSalary <= 5999) return 150;
     else if (grossSalary <= 7999) return 300;
@@ -22,20 +24,23 @@ function calculateNHIF(grossSalary) {
     else return 1700;
 }
 
+// Function to calculate PAYE (tax) using KRA brackets
 function calculatePAYE(taxableIncome) {
     if (taxableIncome <= 24000) return taxableIncome * 0.1;
     else if (taxableIncome <= 32333) return taxableIncome * 0.25;
     else return taxableIncome * 0.3;
 }
 
+// Main function to calculate net salary
 function netSalaryCalculator(basicSalary, benefits) {
-    const grossSalary = basicSalary + benefits;
-    const nssf = calculateNSSF(basicSalary);
-    const taxableIncome = grossSalary - nssf;
-    const payee = calculatePAYE(taxableIncome);
-    const nhif = calculateNHIF(grossSalary);
-    const netSalary = grossSalary - (nssf + nhif + payee);
+    const grossSalary = basicSalary + benefits; // sum of salary + benefits
+    const nssf = calculateNSSF(basicSalary);    // NSSF deduction
+    const taxableIncome = grossSalary - nssf;   // taxable after NSSF
+    const payee = calculatePAYE(taxableIncome); // PAYE tax
+    const nhif = calculateNHIF(grossSalary);    // NHIF deduction
+    const netSalary = grossSalary - (nssf + nhif + payee); // net
 
+    // Print results
     console.log("Gross Salary:", grossSalary);
     console.log("NSSF Deduction:", nssf);
     console.log("NHIF Deduction:", nhif);
@@ -43,4 +48,5 @@ function netSalaryCalculator(basicSalary, benefits) {
     console.log("Net Salary:", netSalary);
 }
 
+// Test case
 netSalaryCalculator(50000, 10000);
